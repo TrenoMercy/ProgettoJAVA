@@ -5,15 +5,15 @@ public class Griglia {
 	private int [][] grill;
 	
 	public Griglia() {
-		grill= new int[7][6];
+		grill= new int[6][7];
 	}
 	
 	/** Stampa a video lo stato attuale della griglia aggiornata*/
 	
 	public void getGrill() {
-		for (int i=0; i<7; i++) {
-			for (int j=0; j<6; j++) {
-				if (j==5) {
+		for (int i=0; i<6; i++) {
+			for (int j=0; j<7; j++) {
+				if (j==6) {
 					System.out.print("| "+grill[i][j]+" |");
 				}
 				else {
