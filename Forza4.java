@@ -1,4 +1,8 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Forza4 {
 	ArrayList<Player> giocatori;
@@ -142,5 +146,62 @@ public class Forza4 {
 		}
 		return false;
 	}
+	
+	/** Permette di continuare una partita ottenendo i dati della
+	 *  partita precedente da un file txt
+	 *  */
+    public void getGame(String fileName) {
+    	String path = System.getProperty("user.home").replace("\\", "\\\\") + "\\";
+        String fullPath = path + fileName;
+        	
+        try {
+            File file = new File(fullPath);
+            Scanner sc = new Scanner(file);
+            
+            Player g3= new Player(sc.nextLine(), Integer.parseInt(sc.nextLine()));
+            Player g4= new Player(sc.nextLine(), Integer.parseInt(sc.nextLine()));
+            giocatori.set(0,g3);
+            giocatori.set(1,g4);
+
+    		for (int i=0; i<6; i++) {    			   	
+    			for (int j=0; j<7; j++) {
+    				grill.setPositionValue(i, j, Integer.parseInt(sc.nextLine()));
+    			}
+    		}
+    		sc.close();
+    		
+        } catch (NumberFormatException e) {} 
+          catch (FileNotFoundException e) {
+        	  System.out.println("File non trovato");
+        }
+
+
+    }
+    
+	/** Permette di salvare una partita scrivendo i dati della
+	 *  partita corrente su un file txt
+	 *  */
+    public void saveGame(String fileName) {
+    	String path = System.getProperty("user.home").replace("\\", "\\\\") + "\\";
+        PrintWriter out = null;
+
+        try {
+            out = new PrintWriter(path + fileName, "UTF-8");
+            out.println(giocatori.get(0).getNumber());
+            out.println(giocatori.get(0).getName());
+            
+            out.println(giocatori.get(1).getNumber());
+            out.println(giocatori.get(1).getName());           
+
+    		for (int i=0; i<6; i++) {    			   	
+    			for (int j=0; j<7; j++) {
+    				out.println(grill.getPositionValue(i, j));
+    			}
+    		}
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
 
