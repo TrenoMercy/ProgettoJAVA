@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class Forza4 {
 	ArrayList<Player> giocatori;
 	private Griglia grill;
+	Scanner in= new Scanner(System.in);
 	
 	public Forza4(ArrayList<Player> players, Griglia g) {
 		this.grill=g;
@@ -14,12 +15,12 @@ public class Forza4 {
 	}
 	
 	/** Aggiunge il valore all'interno della griglia posizionandola (se possibile)
-	 *  nella colonna inserita in input e nel punto pi� basso consentito
+	 *  nella colonna inserita in input e nel punto più basso consentito
 	 *  @param col colonna della griglia presa in considerazione 
 	 *  @param valore valore da inserire nella colonna 
 	 *  @param turno indica il turno del giocatore che inserisce la pedina*/
 	public boolean addMove(int col, int valore, int turno ) {
-		int i=6;
+		int i=5;
 		boolean check= false;
 		
 		if (turno== 42) {
@@ -33,17 +34,18 @@ public class Forza4 {
 		}
 		while (!check) {
 			if (grill.getPositionValue(i, col)==0) {
+				
 				grill.setPositionValue(i, col, valore);
 				grill.getGrill();
 				checkPosition(i,col,turno);//controlla la mossa inserita
 				System.out.println();
-				turno++;
+				
 				check=true;
 				
 			}
-			else if (i==7) {
+			else if (i==0) {
 				System.out.println("La colonna è piena, scegline un'altra.");
-				check=true;
+				return addMove(in.nextInt(),valore,turno);
 				
 			}
 			i--;
@@ -52,10 +54,10 @@ public class Forza4 {
 	}
 	
 	/** Indica la fine del gioco
-	 *  @param turno indica il turno in cui � finita la partita*/
+	 *  @param turno indica il turno in cui è finita la partita*/
 	public boolean endGame(int turno) {
 		if (turno==42) {
-			System.out.println("Partita intensa ma è finita in parità");
+			System.out.println("Partita intensa ma è finita in parità ");
 		}
 		else {
 			System.out.print("Complimenti "+giocatori.get(turno%2)+" hai vinto la partita!");
@@ -67,13 +69,13 @@ public class Forza4 {
 	 *  inserito la mossa ha vinto
 	 *  @param i riga della griglia presa in considerazione
 	 *  @param col colonna della griglia presa in considerazione
-	 *  @param turno turno in cui � avvenuta la mossa*/
+	 *  @param turno turno in cui è avvenuta la mossa*/
 	
 	public boolean checkPosition(int i, int col, int turno) {
 		int valore=grill.getPositionValue(i, col);
 		// Controllare se i valori vicino a valore sono uguali a valore
 		// se sono uguali incremento count di 1
-		// se count=4 la partita � finita e chiamo il metodo endGame
+		// se count=4 la partita è finita e chiamo il metodo endGame
 		// questa funzione deve tornare un booleano
 		
 		// Controllo orizzontale
