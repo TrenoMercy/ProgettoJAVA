@@ -29,7 +29,7 @@ public class Forza4 {
 		
 		if (col<0 || col>6) {
 			System.out.println("Scegli una colonna compresa tra 0 e 6.");
-			return addMove(in.nextInt(),valore,turno);
+			check=true;
 
 		}
 		while (!check) {
@@ -37,7 +37,9 @@ public class Forza4 {
 				
 				grill.setPositionValue(i, col, valore);
 				grill.getGrill();
-				checkPosition(i,col,turno);//controlla la mossa inserita
+				if (checkPosition(i,col,turno) == true){
+					return true;
+				}
 				System.out.println();
 				
 				check=true;
@@ -75,7 +77,7 @@ public class Forza4 {
 		int valore=grill.getPositionValue(i, col);
 		// Controllare se i valori vicino a valore sono uguali a valore
 		// se sono uguali incremento count di 1
-		// se count=4 la partita Ã¨ finita e chiamo il metodo endGame
+		// se count=4 la partita è finita e chiamo il metodo endGame
 		// questa funzione deve tornare un booleano
 		
 		// Controllo orizzontale
@@ -84,14 +86,15 @@ public class Forza4 {
 			for (int y=0; y<7; y++) {
 				if(grill.getPositionValue(x, y) == valore) {
 					count++;
+					if(count >= 4) {				
+						return endGame(turno);
+					}
 				}
 				else {
 					count = 0;
 				}
 			}
-			if(count >= 4) {				
-				return endGame(turno);
-			}
+//			System.out.println("count:"+ count);
 		}
 		
 		// Controllo verticale
@@ -100,14 +103,15 @@ public class Forza4 {
 			for (int x=0; x<6; x++) {
 				if(grill.getPositionValue(x, y) == valore) {
 					count++;
+					if(count >= 4) {
+						return endGame(turno);
+					}
 				}
 				else {
 					count = 0;
 				}
 			}
-			if(count >= 4) {
-				return endGame(turno);
-			}
+
 		}
 		
 		// Controllo diagonale	            		
@@ -126,7 +130,9 @@ public class Forza4 {
 		                    count1 = 0;
 		                }
 					}
-					finally {}
+					catch (ArrayIndexOutOfBoundsException e) {
+						
+					}
 					
 					// Controllo contro-diagonale
 					try {
@@ -137,7 +143,10 @@ public class Forza4 {
 		                    count2 = 0;
 		                }
 					}
-					finally {}
+					catch (ArrayIndexOutOfBoundsException e) {
+						
+					}
+					
 					
 				if(count1 >= 4 || count2 >= 4) {
 					return endGame(turno);
@@ -148,6 +157,7 @@ public class Forza4 {
 		}
 		return false;
 	}
+	
 	
 	/** Permette di continuare una partita ottenendo i dati della
 	 *  partita precedente da un file txt
