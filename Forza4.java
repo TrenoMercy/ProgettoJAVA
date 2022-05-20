@@ -29,7 +29,7 @@ public class Forza4 {
 		
 		if (col<0 || col>6) {
 			System.out.println("Scegli una colonna compresa tra 0 e 6.");
-			check=true;
+			return addMove(in.nextInt(),valore,turno);
 
 		}
 		while (!check) {
