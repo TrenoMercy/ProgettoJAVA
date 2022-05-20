@@ -60,7 +60,7 @@ public class Forza4 {
 			System.out.println("Partita intensa ma è finita in parità ");
 		}
 		else {
-			System.out.print("Complimenti "+giocatori.get(turno%2)+" hai vinto la partita!");
+			System.out.print("Complimenti "+giocatori.get(turno%2).getName()+" hai vinto la partita!");
 		}
 		return true;
 	}
