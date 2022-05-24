@@ -15,7 +15,7 @@ public class Forza4 {
 	}
 	
 	/** Aggiunge il valore all'interno della griglia posizionandola (se possibile)
-	 *  nella colonna inserita in input e nel punto più basso consentito
+	 *  nella colonna inserita in input e nel punto piÃ¹ basso consentito
 	 *  @param col colonna della griglia presa in considerazione 
 	 *  @param valore valore da inserire nella colonna 
 	 *  @param turno indica il turno del giocatore che inserisce la pedina*/
@@ -23,13 +23,14 @@ public class Forza4 {
 		int i=5;
 		boolean check= false;
 		
-		if (turno== 42) {
-			return endGame(turno);
+		if (turno== 41) {
+			System.out.println("Partita intensa ma è finita in parità");
+			return true;
 		}
 		
 		if (col<0 || col>6) {
 			System.out.println("Scegli una colonna compresa tra 0 e 6.");
-			check=true;
+			return addMove(in.nextInt(),valore,turno);
 
 		}
 		while (!check) {
@@ -38,6 +39,7 @@ public class Forza4 {
 				grill.setPositionValue(i, col, valore);
 				grill.getGrill();
 				if (checkPosition(i,col,turno) == true){
+					System.out.print("Complimenti "+giocatori.get(turno%2).getName()+" hai vinto la partita!");
 					return true;
 				}
 				System.out.println();
@@ -54,30 +56,18 @@ public class Forza4 {
 		}
 		return false;
 	}
-	
-	/** Indica la fine del gioco
-	 *  @param turno indica il turno in cui è finita la partita*/
-	public boolean endGame(int turno) {
-		if (turno==42) {
-			System.out.println("Partita intensa ma è finita in parità ");
-		}
-		else {
-			System.out.print("Complimenti "+giocatori.get(turno%2).getName()+" hai vinto la partita!");
-		}
-		return true;
-	}
-	
+
 	/** Controlla se nella posizione corrente il giocatore che ha 
 	 *  inserito la mossa ha vinto
 	 *  @param i riga della griglia presa in considerazione
 	 *  @param col colonna della griglia presa in considerazione
-	 *  @param turno turno in cui è avvenuta la mossa*/
+	 *  @param turno turno in cui Ã¨ avvenuta la mossa*/
 	
 	public boolean checkPosition(int i, int col, int turno) {
 		int valore=grill.getPositionValue(i, col);
 		// Controllare se i valori vicino a valore sono uguali a valore
 		// se sono uguali incremento count di 1
-		// se count=4 la partita � finita e chiamo il metodo endGame
+		// se count=4 la partita è finita e chiamo il metodo endGame
 		// questa funzione deve tornare un booleano
 		
 		// Controllo orizzontale
@@ -87,7 +77,7 @@ public class Forza4 {
 				if(grill.getPositionValue(x, y) == valore) {
 					count++;
 					if(count >= 4) {				
-						return endGame(turno);
+						return true;
 					}
 				}
 				else {
@@ -104,7 +94,7 @@ public class Forza4 {
 				if(grill.getPositionValue(x, y) == valore) {
 					count++;
 					if(count >= 4) {
-						return endGame(turno);
+						return true;
 					}
 				}
 				else {
@@ -149,7 +139,7 @@ public class Forza4 {
 					
 					
 				if(count1 >= 4 || count2 >= 4) {
-					return endGame(turno);
+					return true;
 				}
 
 				}
