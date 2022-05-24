@@ -22,9 +22,16 @@ public class Partita{
 		int turno=0;
 		while (!check) {
 			System.out.print(giocatori.get(turno%2).getName()+" fai la tua mossa, scegli la colonna(tra 0 e 6) in cui inserire la pedina:");
-			int val= in.nextInt();
-			check= game.addMove(val, giocatori.get(turno%2).getNumber(), turno);
-			turno++;
+			if (in.hasNextInt()){
+				int val= in.nextInt();
+				check= game.addMove(val, giocatori.get(turno%2).getNumber(), turno);
+				turno++;
+			}
+			else{
+				in.next();
+				System.out.println("Attenzione inserisci un numero");
+			}
 		}
+		in.close();
 	}
 }
