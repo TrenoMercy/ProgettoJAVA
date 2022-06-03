@@ -26,8 +26,8 @@ public class Connect4 {
 	/** Adds the value that identifies the player within the grid by putting him 
 	   (if possible) in the column entered in input and in the lowest possible row. 
 	   Returns the row where the number is placed.
-       @param col column of location
-       @param value value of the player to be entered in the column 
+           @param col column of location
+           @param value value of the player to be entered in the column 
 	   @param turn turn of the player who enters the value
 	   @return row where the value arrived
 	 */
@@ -68,7 +68,7 @@ public class Connect4 {
 	
 	/** Check if in the current position the player who inserts the move wins or not.
 	 	@param row row of location
-        @param column column of location
+                @param column column of location
 	 	@param turn turn in which the move took place
 	 	@return return true if the game is over, false if it is not over
 	 */
