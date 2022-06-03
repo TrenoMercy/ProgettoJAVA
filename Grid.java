@@ -7,22 +7,22 @@ public class Grid {
 	private int [][] grid;
 	
 	/**
-	 Construct an empty grid object.
+	     Construct an empty grid object.
 	 */
 	public Grid() {
 		grid= new int[6][7];
 	}
 	
 	/**
-	 Construct a grid object by initializing it with the input grid.
-	 @param g grid to edit
+	     Construct a grid object by initializing it with the input grid.
+	     @param g grid to edit
 	 */
 	public Grid(Grid g) {
 		this.grid= g.grid;
 	}
 	
 	/** 
-	 Print the current grid status on the screen.
+	     Print the current grid status on the screen.
 	 */
 	public void getGrid() {
 		for (int row=0; row<6; row++) {
@@ -40,7 +40,7 @@ public class Grid {
 	
 	/**Returns the value found in the grid in position [row] [column].
 	   @param row row of location
-       @param col column of location
+           @param col column of location
 	   @return value found in the grid in position [row] [column]*/
 	public int getPositionValue(int row, int column){
 		return grid[row][column];
@@ -48,7 +48,7 @@ public class Grid {
 	
 	/**Set the value in position [row] [column].
 	   @param row row of location
-       @param column column of location
+           @param column column of location
 	   @param value value to insert*/
 	
 	public void setPositionValue(int row, int column, int value) {
