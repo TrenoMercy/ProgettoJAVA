@@ -15,8 +15,8 @@ public class Player extends Person{
 	}
 	
 	/** 
-	 	Get the name of the player.
-	 	@return the name of the player
+	     Get the name of the player.
+	     @return the name of the player
 	 */
 	public String getName() {
 		return super.getName();
@@ -24,7 +24,7 @@ public class Player extends Person{
 	
 	/**
 	    Get the number of the player.
-	 	@return the number of the player
+	    @return the number of the player
 	 */
 	public int getNumber() {
 		return number;
