@@ -294,6 +294,8 @@ public class GUI {
 					String player1=players.get(0).getName()+players.get(0).getNumber();
 					String player2=players.get(1).getName()+players.get(1).getNumber();
 					loadGame.saveGame(turn,player1,player2,gameName);
+					internalFrame.setVisible(true);
+				  	lblNewLabel_1.setText("Partita salvata correttamente");
 
 					}
 				}
